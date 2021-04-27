@@ -1,0 +1,18 @@
+{
+	"logSuccesses"          : false,
+
+	"mappings" :
+	[
+		{
+			"name"          : "com.epam.deltix.dfp.Decimal64",
+			"implementation": "com.epam.deltix.dfp.Decimal64Utils",
+			"box"           : "com.epam.deltix.dfp.Decimal64 deltix.dfp.Decimal64.fromUnderlying(J)",
+			"unbox"         : "J deltix.dfp.Decimal64.toUnderlying(Lcom/epam/deltix/dfp/Decimal64;)",
+			"boxArray"      : "[Lcom/epam/deltix/dfp/Decimal64; com.epam.deltix.dfp.Decimal64Utils.fromUnderlyingLongArray([J)",
+			"unboxArray"    : "[J com.epam.deltix.dfp.Decimal64Utils.toUnderlyingLongArray([Lcom/epam/deltix/dfp/Decimal64;)",
+
+			"methodSuffix"  : "Checked",
+			"staticMethodSuffix"  : ""
+		}
+	]
+}
