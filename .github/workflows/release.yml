@@ -64,7 +64,7 @@ jobs:
       - name: Build with gradle
         run: ./gradlew -p java :java:value-types:jar
         
-  test-java-7:
+  test-java-8:
     name: Build Java ${{ matrix.java }} (${{ matrix.os }})
     if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
     needs: prepare
@@ -72,7 +72,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        java: [ '7' ]
+        java: [ '8' ]
         os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
     steps:
       - name: Checkout code
@@ -96,7 +96,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
       - name: Build with gradle
-        run: ./gradlew -p java :java:value-types-test7:test
+        run: ./gradlew -p java :java:value-types-test8:test
 
   release:
     name: Release
