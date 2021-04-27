@@ -39,16 +39,14 @@ dependencies {
     testCompile project(':java:value-types')
 }
 
-
 sourceSets {
     test {
         java {
-            srcDir "../test7/src/test/java"
             srcDir "../test8/src/test/java"
+            srcDir "../test8/src/main/java"
         }
     }
 }
-
 
 test {
     outputs.upToDateWhen { false }

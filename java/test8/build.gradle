@@ -29,23 +29,13 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
-    testCompile 'com.google.code.java-allocation-instrumenter:java-allocation-instrumenter:3.1.0'
-    testCompile group: "junit", name: "junit", version: "4.+"
-    testCompile group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.4"
+    compile project(':java:dfp-stub')
+    compile project(':java:value-types')
 
-    testCompile project(':java:dfp-stub')
-    testCompile project(':java:value-types')
-    testCompile project(':java:value-types-test7')
-}
-
-sourceSets {
-    test {
-        java {
-            srcDir "../test7/src/test/java"
-        }
-    }
+    compile 'com.google.code.java-allocation-instrumenter:java-allocation-instrumenter:3.1.0'
+    compile group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.4"
+    compile group: "junit", name: "junit", version: "4.+"
 }
 
 test {
