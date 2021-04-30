@@ -17,7 +17,7 @@ ASM framework is used to perform the code transformation. Efforts were made to e
 
 ###### Add agent jar and the JSON config file path to JVM options
 
-`-javaagent:java/build/libs/deltix-vtype-0.9.1.jar=cfg/valuetypes.json`
+`-javaagent:java/build/libs/value-types-0.9.1.jar=cfg/valuetypes.json`
 
 Example configuration files are supplied with the project as reference.
 
