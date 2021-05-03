@@ -18,7 +18,6 @@ package com.epam.deltix.vtype.type;
 
 import org.junit.Test;
 
-import static com.epam.deltix.vtype.type.DescriptorParser.parseMethod;
 import static org.junit.Assert.assertEquals;
 
 public class DescriptorParserTest {

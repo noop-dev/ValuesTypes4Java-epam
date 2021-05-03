@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
-apply plugin: "java"
+apply plugin: 'java-library'
 apply plugin: "maven-publish"
+apply plugin: 'signing'
 
 sourceCompatibility=1.8
 targetCompatibility=1.8
+
+group "com.epam.deltix"
 
 buildscript {
     repositories {
@@ -29,6 +32,8 @@ buildscript {
 repositories {
     mavenCentral()
 }
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 task sourcesJar(type: Jar, dependsOn: classes) {
     classifier = 'sources'
@@ -43,9 +48,9 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 }
 
 dependencies {
-    compile 'org.ow2.asm:asm-tree:7.2'
-    compile 'org.ow2.asm:asm-util:7.2'
-    compile 'org.json:json:20171018'
+    implementation 'org.ow2.asm:asm-tree:7.2'
+    implementation 'org.ow2.asm:asm-util:7.2'
+    implementation 'org.json:json:20171018'
 }
 
 task generateVersionJava {
@@ -63,6 +68,11 @@ class  Version {
     }
 }
 
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
 compileJava.dependsOn generateVersionJava
 
 jar {
@@ -78,4 +88,73 @@ jar {
         )
     }
     from { fileTree(dir: 'src/main/java', includes: [ '**/*.class', '**/*.properties' ]) }
+}
+
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+def rUser = findProperty('SONATYPE_NEXUS_USERNAME') ?:  System.getenv('SONATYPE_NEXUS_USERNAME') ?: "FakeUser"
+def rPass = findProperty('SONATYPE_NEXUS_PASSWORD') ?:  System.getenv('SONATYPE_NEXUS_PASSWORD') ?: "FakePass"
+
+publishing {
+    repositories {
+        maven {
+            url = findProperty('SONATYPE_REPOSITORY') ?:  System.getenv('SONATYPE_REPOSITORY') ?: "FakeRepo"
+
+            credentials {
+                username rUser
+                password rPass
+            }
+        }
+    }
+
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name = 'value-types'
+                packaging = 'jar'
+                description = 'Java Agent classloader to implement transformation of operations on specific classes into operations on long integer values.'
+                url = 'https://github.com/epam/ValuesTypes4Java'
+
+                scm {
+                    connection = 'scm:git:https://github.com/epam/ValuesTypes4Java.git'
+                    developerConnection = 'scm:git:https://github.com/epam/ValuesTypes4Java.git'
+                    url = 'https://github.com/epam/ValuesTypes4Java.git'
+                }
+
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'alex-karpovich'
+                        name = 'Alexander Karpovich'
+                        email = 'aliaksandr_karpovich@epam.com'
+                        url = 'https://github.com/alex-karpovich'
+                        organization = 'EPAM Systems'
+                        organizationUrl = 'https://www.epam.com/'
+                    }
+                }
+            }
+        }
+    }
+
+    signing {
+        def signingKey = findProperty('SIGNING_PRIVATE_KEY')   //System.getenv("SIGNING_PRIVATE_KEY")
+        def signingPassword = findProperty('SIGNING_PASSWORD') //System.getenv("SIGNING_PASSWORD")
+
+        useInMemoryPgpKeys(signingKey, signingPassword)
+        sign publishing.publications.mavenJava
+
+        required { isReleaseVersion }
+    }
 }

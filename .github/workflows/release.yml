@@ -63,39 +63,7 @@ jobs:
           java-version: ${{ matrix.java }}
       - name: Build with gradle
         run: ./gradlew -p java :java:value-types:jar
-        
-  test-java-8:
-    name: Build Java ${{ matrix.java }} (${{ matrix.os }})
-    if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
-    needs: prepare
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        java: [ '8' ]
-        os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Checkout branch (Windows)
-        if: matrix.os == 'windows-latest'
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git fetch
-          git checkout -b workflow-$env:GITHUB_RUN_ID origin/workflow-$env:GITHUB_RUN_ID~1
-      - name: Checkout branch (Linux/MacOS)
-        if: matrix.os == 'ubuntu-latest' || matrix.os == 'macos-latest'
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git fetch
-          git checkout -b workflow-$GITHUB_RUN_ID origin/workflow-$GITHUB_RUN_ID~1
-      - name: Setup java
-        uses: actions/setup-java@v1
-        with:
-          java-version: ${{ matrix.java }}
-      - name: Build with gradle
+      - name: Test with gradle
         run: ./gradlew -p java :java:value-types-test8:test
 
   release:
@@ -137,12 +105,12 @@ jobs:
         with:
           java-version: 8
       - name: Publish jars
-        run: ./gradlew publishAll
+        run: ./gradlew :java:value-types:publish
         env:
-          MAVEN_REPOSITORY: ${{ secrets.MAVEN_REPOSITORY }}
-          MAVEN_USERNAME:   ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_PASSWORD:   ${{ secrets.MAVEN_PASSWORD }}
-          SIGNING_KEY:      ${{ secrets.SIGNING_KEY }}
+          SONATYPE_REPOSITORY: ${{ secrets.SONATYPE_REPOSITORY }}
+          SONATYPE_NEXUS_USERNAME:   ${{ secrets.SONATYPE_NEXUS_USERNAME }}
+          SONATYPE_NEXUS_PASSWORD:   ${{ secrets.SONATYPE_NEXUS_PASSWORD }}
+          SIGNING_PRIVATE_KEY:      ${{ secrets.SIGNING_PRIVATE_KEY }}
           SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
 
   cleanup:
