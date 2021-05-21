@@ -14,7 +14,8 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.test;
+
+package com.epam.deltix.vtype.test;
 
 import com.epam.deltix.dfp.Decimal64;
 import com.epam.deltix.dt.DateTime;
@@ -115,8 +116,8 @@ public class TestRefCompare {
             assertTrue(aNull != a);
             assertFalse(a == aNull);
             aNull = DateTime.fromString(a.toString());
-            assertTrue(aNull == a);
-            assertFalse(a != aNull);
+            assertTrue(aNull != a);
+            assertFalse(a == aNull);
         }
 
         if (true) {
