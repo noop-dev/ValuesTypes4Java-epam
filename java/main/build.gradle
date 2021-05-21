@@ -79,7 +79,7 @@ jar {
     manifest {
         attributes (
                 "Implementation-Title": "Deltix Value Types For Java",
-                "Implementation-Version": version,
+                "Implementation-Version": archiveVersion,
                 'PreMain-Class': 'com.epam.deltix.vtype.transformer.AgentPreMain',
                 'Agent-Class': 'com.epam.deltix.vtype.transformer.AgentPreMain',
                 'Can-Redefine-Classes': 'true',
@@ -89,7 +89,6 @@ jar {
     }
     from { fileTree(dir: 'src/main/java', includes: [ '**/*.class', '**/*.properties' ]) }
 }
-
 
 java {
     withJavadocJar()
