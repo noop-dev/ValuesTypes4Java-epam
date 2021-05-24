@@ -1,10 +1,10 @@
 ## ValueTypes4Java installation/quick start
 
 #### Location of the Value Type project
-https://github.com/deltixlab/ValueTypes4Java
+https://github.com/epam/ValuesTypes4Java
 
 #### Obtaining Value Type Agent files
-You need two files, .jar file, containing VT agent and JSON config file, containing description of 0 or more classes, representing value types.
+You need two files, .jar file, containing VT agent and JSON config file, containing description of 0 or more classes, representing value types.      
 
 JAR file is built by `jar` Gradle task:
 `gradlew jar`
