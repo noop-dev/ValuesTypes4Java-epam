@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.annotations;
+package com.epam.deltix.vtype.annotations;
 
 /**
  * Mark last 2 long/VType parameters of a method as commutative.

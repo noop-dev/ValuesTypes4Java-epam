@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.common;
+package com.epam.deltix.vtype.common;
 
 /**
  * Crude AdHoc "Logger" class. Extra dependencies are dangerous in a Java Agent, so this should do.
