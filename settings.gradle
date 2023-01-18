@@ -3,7 +3,6 @@ include 'java:dfpstub'
 include 'java:test8'
 include 'java:test11'
 
-project(':java:dfpstub').name = 'dfp-stub'
 project(':java:main').name = 'value-types'
 project(':java:test8').name = 'value-types-test8'
 project(':java:test11').name = 'value-types-test11'
