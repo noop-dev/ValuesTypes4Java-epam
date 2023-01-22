@@ -149,8 +149,8 @@ publishing {
     }
 
     signing {
-        def signingKey = findProperty('SIGNING_PRIVATE_KEY')   //System.getenv("SIGNING_PRIVATE_KEY")
-        def signingPassword = findProperty('SIGNING_PASSWORD') //System.getenv("SIGNING_PASSWORD")
+        def signingKey = findProperty('SIGNING_PRIVATE_KEY') ?: System.getenv('SIGNING_PRIVATE_KEY') ?: "FakeUser"
+        def signingPassword = findProperty('SIGNING_PASSWORD') ?: System.getenv('SIGNING_PASSWORD') ?: "FakePass"
 
         useInMemoryPgpKeys(signingKey, signingPassword)
         sign publishing.publications.mavenJava
