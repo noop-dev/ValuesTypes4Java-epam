@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':java:dfp-stub')
+    compile "com.epam.deltix:dfp:$dfpVersion"
     compile project(':java:value-types')
 
     compile 'com.google.code.java-allocation-instrumenter:java-allocation-instrumenter:3.1.0'

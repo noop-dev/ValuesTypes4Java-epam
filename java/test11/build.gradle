@@ -19,7 +19,7 @@ dependencies {
     testCompile group: "junit", name: "junit", version: "4.+"
     testCompile group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.4"
 
-    testCompile project(':java:dfp-stub')
+    testCompile "com.epam.deltix:dfp:$dfpVersion"
     testCompile project(':java:value-types')
 }
 

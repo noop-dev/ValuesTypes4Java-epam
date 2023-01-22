@@ -261,19 +261,20 @@ public class ClassDef {
      * @throws Exception
      */
     public void addPartialMethod(String methodName, String desc, boolean isStatic, String preferredName) throws Exception {
-        MethodDef mdef = MethodDef.createPartial(this, methodName, desc, isStatic, methodName);
-        addMethod(mdef);
-
         String newDesc = DescriptorParser.getTransformedDesc(desc, !isStatic, mapping);
 
         // Do nothing if a method does not make use of its own class (static utility methods etc.)
-
+        // a static method that returns a Value Type is still transformed.
         if (newDesc.equals(desc)) {
             if (null != preferredName)
                 throw new Exception("Method " + methodName + desc + " is not supposed to have Value Type annotations");
 
+            // System.out.printf("Not transforming method(same signature): %s %s %s\n", isStatic ? "static" : "", methodName, desc);
             return;
         }
+
+        MethodDef mdef = MethodDef.createPartial(this, methodName, desc, isStatic, methodName);
+        addMethod(mdef);
 
         if (null != preferredName) {
             // Not changing method path at this point
