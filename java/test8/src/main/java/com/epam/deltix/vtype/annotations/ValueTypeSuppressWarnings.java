@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.annotations;
+package com.epam.deltix.vtype.annotations;
 
 /**
  * Specify Warnings to suppress. Read Warning messages for more details.

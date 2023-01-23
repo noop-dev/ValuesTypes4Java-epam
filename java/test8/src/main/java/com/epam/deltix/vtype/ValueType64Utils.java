@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype;
+package com.epam.deltix.vtype;
 
 public class ValueType64Utils {
 

@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.type;
+package com.epam.deltix.vtype.type;
 
 
 // TODO: This class still may be a subject to optimizations and encoding improvements

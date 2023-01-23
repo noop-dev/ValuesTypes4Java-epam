@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.mapping;
+package com.epam.deltix.vtype.mapping;
 
 public class ClassDefFlags {
     public final static int F_SRC_CLASS_PROCESSED       = 0x0001;

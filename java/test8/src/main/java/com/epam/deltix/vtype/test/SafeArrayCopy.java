@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.test;
+package com.epam.deltix.vtype.test;
 
 /**
  * Stub implementation of a typical array copying method, used in some tests.

@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.annotations;
+package com.epam.deltix.vtype.annotations;
 
 /**
  * Set logging level for a method to DEBUG

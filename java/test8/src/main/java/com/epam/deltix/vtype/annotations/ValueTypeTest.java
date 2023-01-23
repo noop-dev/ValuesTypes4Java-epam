@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.annotations;
+package com.epam.deltix.vtype.annotations;
 
 /**
  * Opt-in into Value Type transformation when all other classes are ignored by default

@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.dfp;
+package com.epam.deltix.dfp;
 
 /**
  * Stub for Deltix Decimal Floating Point library.

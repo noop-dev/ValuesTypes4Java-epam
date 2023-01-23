@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.interpreter;
+package com.epam.deltix.vtype.interpreter;
 
 import com.epam.deltix.vtype.common.CrudeLogger;
 import org.objectweb.asm.tree.*;

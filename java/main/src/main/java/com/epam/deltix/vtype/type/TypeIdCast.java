@@ -14,7 +14,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.epam.deltix.vtype.type;
+package com.epam.deltix.vtype.type;
 
 /**
  * This class contains the logic to check the possiblity of converting a type (possibly a transformed VType) into another
