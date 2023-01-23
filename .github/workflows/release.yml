@@ -60,6 +60,7 @@ jobs:
       - name: Setup java
         uses: actions/setup-java@v3
         with:
+          distribution: 'adopt'
           java-version: ${{ matrix.java }}
       - name: Build with gradle
         run: ./gradlew -p java :java:value-types:jar
@@ -103,6 +104,7 @@ jobs:
       - name: Setup java
         uses: actions/setup-java@v3
         with:
+          distribution: 'adopt'
           java-version: 8
       - name: Publish jars
         run: ./gradlew :java:value-types:publish
