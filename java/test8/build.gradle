@@ -30,20 +30,23 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    compile "com.epam.deltix:dfp:$dfpVersion"
-    compile project(':java:value-types')
+configurations.implementation.canBeResolved true
+configurations.testImplementation.canBeResolved true
 
-    compile 'com.google.code.java-allocation-instrumenter:java-allocation-instrumenter:3.1.0'
-    compile group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.4"
-    compile group: "junit", name: "junit", version: "4.+"
+dependencies {
+    implementation "com.epam.deltix:dfp:$dfpVersion"
+    implementation project(':java:value-types')
+
+    implementation 'com.google.code.java-allocation-instrumenter:java-allocation-instrumenter:3.1.0'
+    implementation group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.4"
+    implementation group: "junit", name: "junit", version: "4.+"
 }
 
 test {
     outputs.upToDateWhen { false }
     def disableAllocationDetector = true
-    def javaAllocationInstrumenterJar = configurations.testCompile.find {it.name.startsWith('java-allocation-instrumenter')}
-    def vtAgentJar = configurations.testCompile.find {it.name.startsWith('value-types-0')}
+    def javaAllocationInstrumenterJar = configurations.testImplementation.find {it.name.startsWith('java-allocation-instrumenter')}
+    def vtAgentJar = configurations.testImplementation.find {it.name.startsWith('value-types-0')}
 
     def valueTypeAgent = '-javaagent:' + vtAgentJar + '=' + rootDir + "/cfg/valuetype-tests.json"
     jvmArgs += valueTypeAgent
