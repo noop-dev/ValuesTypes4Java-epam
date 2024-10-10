@@ -31,14 +31,14 @@ jobs:
           git push origin HEAD
 
   build:
-    name: Build Java ${{ matrix.java }} (${{ matrix.os }})
+    name: Test Java ${{ matrix.java }} (${{ matrix.os }})
     if: ${{ !contains(github.event.head_commit.message, '[skip-ci]') }}
     needs: prepare
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        java: [ '8' ]
+        java: [ '8', '11', '17' ]
         os: [ 'ubuntu-latest', 'windows-latest', 'macos-latest' ]
     steps:
       - name: Checkout code
@@ -62,10 +62,15 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: ${{ matrix.java }}
-      - name: Build with gradle
-        run: ./gradlew -p java :java:value-types:jar
-      - name: Test with gradle
-        run: ./gradlew -p java :java:value-types-test8:test
+      - name: Build/Test (Java 8)
+        if: matrix.java == '8' && matrix.os != 'macos-latest'
+        run: ./gradlew -p java :java:value-types:jar :java:value-types-test8:test
+      - name: Build/Test (Java 11)
+        if: matrix.java == '11'
+        run: ./gradlew -p java :java:value-types:jar :java:value-types-test11:test
+      - name: Build/Test (Java 17)
+        if: matrix.java == '17'
+        run: ./gradlew -p java :java:value-types:jar :java:value-types-test17:test
 
   release:
     name: Release
